@@ -77,9 +77,9 @@ class Sort
         uasort($object, function ($v1, $v2) use ($sorters, $object) {
             // Try sort each objects by the sorter.
             foreach ($sorters as $sorter) {
-                $result = self::compareFunction($sorter, $v1, $v2);
+                $result = call_user_func($sorter['function'], $v1, $v2);
                 if ($result !== 0) {
-                    return $result;
+                    return $sorter['order'] === SORT_DESC ? -$result : $result;
                 }
             }
 
@@ -88,22 +88,6 @@ class Sort
         });
 
         return $object;
-    }
-
-    /**
-     * Call the compare function.
-     *
-     * @param array $sorter The sorter controller.
-     * @param mixed $v1     The left side to compare.
-     * @param mixed $v2     The right side to compare.
-     *
-     * @return int
-     */
-    private static function compareFunction($sorter, $v1, $v2)
-    {
-        $result = call_user_func($sorter['function'], $v1, $v2);
-
-        return $sorter['order'] === SORT_ASC ? $result : -$result;
     }
 
     /**

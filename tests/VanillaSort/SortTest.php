@@ -51,7 +51,6 @@ class SortTest extends PHPUnit_Framework_TestCase
      * @covers \Rentalhost\VanillaSort\Sort::using
      * @covers \Rentalhost\VanillaSort\Sort::by
      * @covers \Rentalhost\VanillaSort\Sort::get
-     * @covers \Rentalhost\VanillaSort\Sort::compareFunction
      */
     public function testBasicSortingNumber()
     {
