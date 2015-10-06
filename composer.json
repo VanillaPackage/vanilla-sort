@@ -1,0 +1,22 @@
+{
+    "name": "rentalhost/vanilla-sort",
+    "description": "The vanilla-sort will help you to multisort arrays by using callbacks or property names.",
+
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Rentalhost\\VanillaSort\\": "src/VanillaSort/"
+        }
+    },
+
+    "authors": [
+        {
+            "name": "David Rodrigues",
+            "email": "david.rodrigues@rentalhost.net"
+        }
+    ],
+    "license": "MIT"
+}
