@@ -69,9 +69,12 @@ class Sort
 
     /**
      * Do the sorting and return the object sortered.
+     *
+     * @param boolean|int $reverse Allow reverse values after sort.
+     *
      * @return array
      */
-    public function get()
+    public function get($reverse = false)
     {
         $sorters = $this->sorters;
         $object = (array) $this->object;
@@ -88,6 +91,12 @@ class Sort
             // In last case, order by original key order.
             return array_search($v1, $object, true) < array_search($v2, $object, true) ? -1 : 1;
         });
+
+        if ($reverse === SORT_DESC ||
+            $reverse === true
+        ) {
+            return array_reverse($object, true);
+        }
 
         return $object;
     }

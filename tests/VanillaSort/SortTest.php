@@ -551,6 +551,17 @@ class SortTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Special sorting: sort by none, and reverse result.
+     * @covers \Rentalhost\VanillaSort\Sort::get
+     */
+    public function testSpecialSortingByNoneAndSortDescResult()
+    {
+        $sort = Sort::using([ false, 3, '2', true ])->get(SORT_DESC);
+
+        static::assertSame([ true, '2', 3, false ], array_values($sort));
+    }
+
+    /**
      * Special sorting: sort using a IteratorAggregated instance.
      * @covers \Rentalhost\VanillaSort\Sort::using
      */
