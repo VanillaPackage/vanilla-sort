@@ -3,7 +3,9 @@
 namespace Rentalhost\VanillaSort;
 
 use Closure;
+use IteratorAggregate;
 use ReflectionFunction;
+use Traversable;
 
 /**
  * Class Sort
@@ -139,12 +141,16 @@ class Sort
     /**
      * Create a Sort instance by using an array.
      *
-     * @param array $array Array to prepare sorting.
+     * @param array|Traversable|IteratorAggregate $array Array to prepare sorting.
      *
      * @return $this
      */
     public static function using($array)
     {
+        if (is_subclass_of($array, IteratorAggregate::class, false)) {
+            $array = $array->getIterator();
+        }
+
         $instance = new self;
         $instance->object = $array;
 

@@ -11,6 +11,11 @@
             "Rentalhost\\VanillaSort\\": "src/VanillaSort/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Rentalhost\\VanillaSort\\Stubs\\": "tests/Stubs/"
+        }
+    },
 
     "authors": [
         {

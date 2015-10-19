@@ -3,6 +3,7 @@
 namespace Rentalhost\VanillaSort;
 
 use PHPUnit_Framework_TestCase;
+use Rentalhost\VanillaSort\Stubs\AggregatedArray;
 
 /**
  * Class SortTest
@@ -547,5 +548,18 @@ class SortTest extends PHPUnit_Framework_TestCase
         $sort = Sort::using([ false, 3, '2', true ])->get();
 
         static::assertSame([ false, 3, '2', true ], array_values($sort));
+    }
+
+    /**
+     * Special sorting: sort using a IteratorAggregated instance.
+     * @covers \Rentalhost\VanillaSort\Sort::using
+     */
+    public function testIteratorAggregated()
+    {
+        $sort = Sort::using(new AggregatedArray())->by(function ($item) {
+            return $item;
+        })->get();
+
+        static::assertSame([ 1, 3, 5 ], array_values($sort));
     }
 }
