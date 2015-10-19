@@ -45,7 +45,7 @@ class Sort
         ) {
             /** @noinspection NotOptimalIfConditionsInspection */
             if (is_array($function)) {
-                $function = $function[0];
+                $function = array_shift($function);
             }
 
             $functionReflection = new ReflectionFunction($function);
@@ -103,6 +103,7 @@ class Sort
             $v1 = $function($v1);
             $v2 = $function($v2);
 
+            /** @noinspection TypeUnsafeComparisonInspection */
             if ($v1 == $v2) {
                 return 0;
             }
@@ -121,9 +122,12 @@ class Sort
     private static function closurePropertyName($propertyName)
     {
         return function ($v1, $v2) use ($propertyName) {
+            /** @noinspection UnSafeIsSetOverArrayInspection */
             $v1 = isset( $v1 [$propertyName] ) ? $v1 [$propertyName] : null;
+            /** @noinspection UnSafeIsSetOverArrayInspection */
             $v2 = isset( $v2 [$propertyName] ) ? $v2 [$propertyName] : null;
 
+            /** @noinspection TypeUnsafeComparisonInspection */
             if ($v1 == $v2) {
                 return 0;
             }
