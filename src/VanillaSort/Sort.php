@@ -61,7 +61,7 @@ class Sort
 
         $this->sorters[] = [
             'function' => $function,
-            'order' => $order,
+            'order'    => $order,
         ];
 
         return $this;
@@ -77,7 +77,7 @@ class Sort
     public function get($reverse = false)
     {
         $sorters = $this->sorters;
-        $object = (array) $this->object;
+        $object  = (array) $this->object;
 
         uasort($object, function ($v1, $v2) use ($sorters, $object) {
             // Try sort each objects by the sorter.
@@ -133,9 +133,7 @@ class Sort
     private static function closurePropertyName($propertyName)
     {
         return function ($v1, $v2) use ($propertyName) {
-            /** @noinspection UnSafeIsSetOverArrayInspection */
             $v1 = isset( $v1 [$propertyName] ) ? $v1 [$propertyName] : null;
-            /** @noinspection UnSafeIsSetOverArrayInspection */
             $v2 = isset( $v2 [$propertyName] ) ? $v2 [$propertyName] : null;
 
             /** @noinspection TypeUnsafeComparisonInspection */
@@ -160,7 +158,7 @@ class Sort
             $array = $array->getIterator();
         }
 
-        $instance = new self;
+        $instance         = new self;
         $instance->object = $array;
 
         return $instance;
